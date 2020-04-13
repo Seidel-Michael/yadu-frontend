@@ -23,7 +23,7 @@ jobs:
         # ianwalter/puppeteer@3.0.0
         uses: ianwalter/puppeteer@3.0.0
         with:
-          args: npm
+          args: npm ci
       - name: Test
         uses: ianwalter/puppeteer@3.0.0
         with:
