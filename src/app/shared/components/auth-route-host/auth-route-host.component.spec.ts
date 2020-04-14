@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AuthRouteHostComponent } from './auth-route-host.component';
 
 describe('AuthRouteHostComponent', () => {
@@ -8,6 +9,7 @@ describe('AuthRouteHostComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AuthRouteHostComponent],
+      imports: [RouterTestingModule],
     });
 
     fixture = TestBed.createComponent(AuthRouteHostComponent);
