@@ -9,16 +9,21 @@ import { AppComponent } from './shared/components/app/app.component';
 import { AuthRouteHostComponent } from './shared/components/auth-route-host/auth-route-host.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { sharedTranslations } from './shared/shared-translations';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRouteHostComponent } from './shared/components/app-route-host/app-route-host.component';
 
 Library.add(sharedTranslations);
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AuthRouteHostComponent],
+  declarations: [AppComponent, LoginComponent, AuthRouteHostComponent, AppRouteHostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     SharedMaterialModule,
+    HttpClientModule,
     TranslateModule.forRoot({
       loader: { provide: TranslateLoader, useClass: TranslateObjectLoader },
       useDefaultLang: true,
