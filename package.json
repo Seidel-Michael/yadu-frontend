@@ -20,7 +20,8 @@
     "build:prod": "npm run lint && ng build --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prepare": "npm run build:prod"
   },
   "private": true,
   "dependencies": {
