@@ -9,9 +9,10 @@ const routes: Routes = [
   {
     path: 'app',
     component: AppRouteHostComponent,
-    children: [],
+    children: [{ path: 'admin', loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule) }],
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   { path: 'auth', component: AuthRouteHostComponent, children: [{ path: 'login', component: LoginComponent }] },
   { path: '', pathMatch: 'full', redirectTo: '/app' },
