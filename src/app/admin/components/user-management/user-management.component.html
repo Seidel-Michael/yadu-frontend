@@ -1,0 +1,21 @@
+<h2 translate="userManagement"></h2>
+
+<mat-table *ngIf="dataSource" [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef translate="username"></mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{ user.username }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="groups">
+    <mat-header-cell *matHeaderCellDef translate="groups"></mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <mat-chip-list>
+        <mat-chip *ngFor="let group of user.groups">{{ group }}</mat-chip>
+      </mat-chip-list>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

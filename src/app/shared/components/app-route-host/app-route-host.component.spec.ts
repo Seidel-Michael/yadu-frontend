@@ -1,39 +1,41 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppRouteHostComponent } from './app-route-host.component';
-import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
+import { API_BASE_URL_TOKEN } from '../../injection-tokens/api-base-url.injection-token';
+import { SERVER_URL_TOKEN } from '../../injection-tokens/server-url.injection-token';
+import { AuthService } from '../../services/auth/auth.service';
+import { AppRouteHostComponent } from './app-route-host.component';
 
 describe('AppRouteHostComponent', () => {
   let component: AppRouteHostComponent;
   let fixture: ComponentFixture<AppRouteHostComponent>;
 
   let authService: AuthService;
+  let router: Router;
 
-  let routerStub: any;
+  let navigateSpy: jasmine.Spy;
 
   beforeEach(() => {
-    routerStub = {
-      navigate: jasmine.createSpy(),
-    };
-
     TestBed.configureTestingModule({
       declarations: [AppRouteHostComponent],
-      imports: [RouterTestingModule, MatToolbarModule],
+      imports: [RouterTestingModule, MatToolbarModule, HttpClientTestingModule, MatIconModule],
       providers: [
-        {
-          provide: Router,
-          useValue: routerStub,
-        },
+        { provide: API_BASE_URL_TOKEN, useValue: '/yadu/api/v1' },
+        { provide: SERVER_URL_TOKEN, useValue: 'http://localhost' },
       ],
     });
 
     fixture = TestBed.createComponent(AppRouteHostComponent);
     component = fixture.componentInstance;
 
+    router = TestBed.inject(Router);
     authService = TestBed.inject(AuthService);
+
+    navigateSpy = spyOn(router, 'navigate');
 
     fixture.detectChanges();
   });
@@ -58,7 +60,7 @@ describe('AppRouteHostComponent', () => {
 
       component.logout();
 
-      expect(routerStub.navigate).toHaveBeenCalledWith(['auth', 'login']);
+      expect(navigateSpy).toHaveBeenCalledWith(['auth', 'login']);
     });
   });
 });

@@ -5,7 +5,7 @@ import { SERVER_URL_TOKEN } from '../../injection-tokens/server-url.injection-to
 import { AuthService } from './auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
-const SERVER_URL = 'http;//localhost';
+const SERVER_URL = 'http://localhost';
 const API_BASE_URL = '/yadu/api/v1';
 
 describe('AuthService', () => {
