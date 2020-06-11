@@ -11,7 +11,7 @@ if (environment.production) {
 
 platformBrowserDynamic([
   { provide: API_BASE_URL_TOKEN, useValue: '/yadu/api/v1' },
-  { provide: SERVER_URL_TOKEN, useValue: 'http://localhost' },
+  { provide: SERVER_URL_TOKEN, useValue: '' },
 ])
   .bootstrapModule(AppModule)
   .catch((err) => console.error(err));
