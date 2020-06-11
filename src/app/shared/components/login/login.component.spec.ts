@@ -1,5 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
@@ -15,15 +16,19 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
 
   let authService: AuthService;
-  let router: Router;
+
+  const router = {
+    navigate: jasmine.createSpy('navigate'),
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      imports: [MatInputModule, NoopAnimationsModule, HttpClientTestingModule, RouterTestingModule],
+      imports: [MatInputModule, NoopAnimationsModule, HttpClientTestingModule, RouterTestingModule, FormsModule],
       providers: [
         { provide: API_BASE_URL_TOKEN, useValue: '/yadu/api/v1' },
         { provide: SERVER_URL_TOKEN, useValue: 'http://localhost' },
+        { provide: Router, useValue: router },
       ],
     });
 
@@ -31,7 +36,6 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
 
     authService = TestBed.inject(AuthService);
-    router = TestBed.inject(Router);
 
     fixture.detectChanges();
   });
@@ -56,13 +60,12 @@ describe('LoginComponent', () => {
     });
 
     it('should navigate to /', () => {
-      const spy = spyOn(router, 'navigate');
       spyOn(authService, 'login').and.returnValue(of(undefined));
 
       component.login();
 
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith(['']);
+      expect(router.navigate).toHaveBeenCalled();
+      expect(router.navigate).toHaveBeenCalledWith(['']);
     });
 
     it('should set failedLogin to false when login is successful', () => {
