@@ -19,7 +19,7 @@
       color="primary"
       translate="login.login"
       (click)="login()"
-      [disabled]="username && password"
+      [disabled]="!username || !password"
     ></button>
   </div>
 </div>
