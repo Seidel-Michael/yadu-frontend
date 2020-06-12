@@ -9,7 +9,9 @@ export const sharedTranslations: TranslationDefinition = {
       login: 'Login',
       username: 'Benutzername',
       password: 'Passwort',
-      failed: 'Anmeldung fehlgeschlagen',
+      failed: 'Benuztername oder Password ungültig.',
+      usernameRequired: 'Benutzername benötigt',
+      passwordRequired: 'Passwort benötigt',
     },
   },
   en: {
@@ -18,7 +20,9 @@ export const sharedTranslations: TranslationDefinition = {
       login: 'Login',
       username: 'Username',
       password: 'Password',
-      failed: 'Login failed',
+      failed: 'Username or password invalid.',
+      usernameRequired: 'Username is required',
+      passwordRequired: 'Password is required',
     },
   },
 };
