@@ -2,7 +2,9 @@
   <mat-toolbar-row>
     <span routerLink="/app" translate="appName"></span>
     <span class="toolbar-spacer"></span>
-    <button mat-button routerLink="/app/admin"><mat-icon>security</mat-icon> <span translate="admin"></span></button>
+    <button mat-button routerLink="/app/admin">
+      <mat-icon>security</mat-icon> <span translate="admin.admin"></span>
+    </button>
     <button mat-icon-button (click)="logout()">
       <mat-icon>exit_to_app</mat-icon>
     </button>

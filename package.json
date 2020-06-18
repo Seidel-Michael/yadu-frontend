@@ -18,7 +18,7 @@
     "build:base": "npm run clean && ng build",
     "build:dev": "ng build  --configuration=development",
     "build:prod": "npm run lint && ng build --configuration=production",
-    "watch": "npm run build:base -- --watch --poll 1000",
+    "watch": "npm run build:dev -- --watch --poll 1000",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

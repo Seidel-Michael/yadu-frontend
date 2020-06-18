@@ -5,6 +5,10 @@ const appName = 'yadu';
 export const sharedTranslations: TranslationDefinition = {
   de: {
     appName,
+    common: {
+      save: 'Speichern',
+      cancel: 'Abbrechen',
+    },
     login: {
       login: 'Login',
       username: 'Benutzername',
@@ -16,6 +20,10 @@ export const sharedTranslations: TranslationDefinition = {
   },
   en: {
     appName,
+    common: {
+      save: 'Save',
+      cancel: 'Cancel',
+    },
     login: {
       login: 'Login',
       username: 'Username',

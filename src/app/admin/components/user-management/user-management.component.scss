@@ -1,0 +1,12 @@
+mat-row {
+  &.user-row {
+    &:hover {
+      background: whitesmoke;
+      cursor: pointer;
+    }
+  }
+}
+
+mat-table {
+  margin-top: 24px;
+}

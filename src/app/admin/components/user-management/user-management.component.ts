@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../../../shared/services';
+import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/shared/models/user';
+import { UsersService } from '../../../shared/services';
+import { UserDetailDialogComponent } from '../user-detail-dialog/user-detail-dialog.component';
 
 @Component({
   selector: 'app-user-management',
@@ -8,13 +10,26 @@ import { User } from 'src/app/shared/models/user';
   styleUrls: ['./user-management.component.scss'],
 })
 export class UserManagementComponent implements OnInit {
-  displayedColumns = ['username', 'groups'];
+  columnsToDisplay = ['username', 'groups'];
   dataSource: User[];
 
-  constructor(private users: UsersService) {}
+  constructor(private users: UsersService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.getData();
+  }
+
+  editUser(id: string) {
+    this.users.getUser(id).subscribe((user) => {
+      const ref = this.dialog.open(UserDetailDialogComponent, { data: { mode: 'edit', user }, width: '30%' });
+      ref.afterClosed().subscribe((userResult) => {
+        if (userResult) {
+          this.users.updateUser(userResult).subscribe(() => {
+            this.getData();
+          });
+        }
+      });
+    });
   }
 
   private getData() {
