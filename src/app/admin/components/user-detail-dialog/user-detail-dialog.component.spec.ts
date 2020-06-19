@@ -66,6 +66,20 @@ describe('UserDetailDialogComponent', () => {
   });
 
   describe('form', () => {
+    it('should disable username control when mode is edit', () => {
+      component.data.mode = 'edit';
+
+      component.ngOnInit();
+
+      expect(component.form.get('username').disabled).toBeTrue();
+      expect(component.form.get('username').enabled).toBeFalse();
+    });
+
+    it('should enable username control when mode is add', () => {
+      expect(component.form.get('username').enabled).toBeTrue();
+      expect(component.form.get('username').disabled).toBeFalse();
+    });
+
     it('should set form valid when username is set and password and confirmPassword are empty', () => {
       component.form.get('password').setValue('');
       component.form.get('confirmPassword').setValue('');
