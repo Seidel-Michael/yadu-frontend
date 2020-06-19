@@ -5,6 +5,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { API_BASE_URL_TOKEN } from 'src/app/shared/injection-tokens/api-base-url.injection-token';
 import { SERVER_URL_TOKEN } from 'src/app/shared/injection-tokens/server-url.injection-token';
@@ -31,6 +32,9 @@ describe('UserManagementComponent', () => {
         MatDialogModule,
         MatIconModule,
         NoopAnimationsModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader },
+        }),
       ],
       providers: [
         { provide: API_BASE_URL_TOKEN, useValue: '/yadu/api/v1' },

@@ -5,9 +5,16 @@ const appName = 'yadu';
 export const sharedTranslations: TranslationDefinition = {
   de: {
     appName,
+    welcomeMessage: 'Willkommen, {{user}}!',
+    language: 'Sprache',
     common: {
       save: 'Speichern',
       cancel: 'Abbrechen',
+      logout: 'Abmelden',
+      languages: {
+        german: 'Deutsch',
+        english: 'Englisch',
+      },
     },
     login: {
       login: 'Login',
@@ -20,9 +27,16 @@ export const sharedTranslations: TranslationDefinition = {
   },
   en: {
     appName,
+    welcomeMessage: 'Welcome, {{user}}!',
+    language: 'Language',
     common: {
       save: 'Save',
       cancel: 'Cancel',
+      logout: 'Logout',
+      languages: {
+        german: 'German',
+        english: 'English',
+      },
     },
     login: {
       login: 'Login',

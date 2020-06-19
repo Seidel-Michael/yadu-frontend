@@ -5,8 +5,9 @@
     <button mat-button routerLink="/app/admin">
       <mat-icon>security</mat-icon> <span translate="admin.admin"></span>
     </button>
-    <button mat-icon-button (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>
+
+    <button mat-icon-button color="primary" class="user-menu-button" [matMenuTriggerFor]="userMenu">
+      <mat-icon>person</mat-icon>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -14,3 +15,24 @@
 <div class="container">
   <router-outlet></router-outlet>
 </div>
+
+<mat-menu #userMenu="matMenu">
+  <div *ngIf="user$ | async as user" class="user-menu-top-content">
+    <span class="welcome-message" translate="welcomeMessage" [translateParams]="{ user: user.username }"></span>
+  </div>
+
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span translate="common.logout"></span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="languageMenu">
+    <mat-icon>translate</mat-icon>
+    <span translate="language"></span>
+  </button>
+</mat-menu>
+
+<mat-menu #languageMenu="matMenu">
+  <button *ngFor="let language of languages" mat-menu-item (click)="changeLanguage(language.language)">
+    <span [translate]="language.translation"></span>
+  </button>
+</mat-menu>

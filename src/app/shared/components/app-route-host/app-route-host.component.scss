@@ -5,3 +5,19 @@
 .container {
   margin: 16px;
 }
+
+.user-menu-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ececec;
+}
+
+.user-menu-top-content {
+  padding: 16px;
+  margin-bottom: 16px;
+
+  .welcome-message {
+    font-size: 20px;
+  }
+}
