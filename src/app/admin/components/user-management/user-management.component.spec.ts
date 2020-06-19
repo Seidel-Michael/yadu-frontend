@@ -59,6 +59,67 @@ describe('UserManagementComponent', () => {
     });
   });
 
+  describe('addUser', () => {
+    it('should call open of MatDialog', () => {
+      const dialogRef = {
+        afterClosed: jasmine.createSpy().and.returnValue(of()),
+      };
+      const spy = spyOn(matDialog, 'open').and.returnValue(dialogRef as any);
+
+      component.addUser();
+
+      expect(spy).toHaveBeenCalledWith(UserDetailDialogComponent, {
+        data: {
+          mode: 'add',
+          user: {
+            username: '',
+            groups: [],
+          },
+        },
+        width: '30%',
+      });
+    });
+
+    it('should call addUser when afterClosed returns value', () => {
+      const dialogRef = {
+        afterClosed: jasmine.createSpy().and.returnValue(of({ username: 'abc', password: 'pass', groups: ['abc'] })),
+      };
+      spyOn(matDialog, 'open').and.returnValue(dialogRef as any);
+
+      const spy = spyOn(usersService, 'addUser').and.returnValue(of({}));
+
+      component.addUser();
+
+      expect(spy).toHaveBeenCalledWith('abc', 'pass', ['abc']);
+    });
+
+    it('should not call addUser when afterClosed returns undefined', () => {
+      const dialogRef = {
+        afterClosed: jasmine.createSpy().and.returnValue(of(undefined)),
+      };
+      spyOn(matDialog, 'open').and.returnValue(dialogRef as any);
+
+      const spy = spyOn(usersService, 'addUser').and.returnValue(of({}));
+
+      component.addUser();
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('should call getUsers when addUser was successful', () => {
+      const dialogRef = {
+        afterClosed: jasmine.createSpy().and.returnValue(of({ username: 'abc', userId: 'someID', groups: ['abc'] })),
+      };
+      spyOn(matDialog, 'open').and.returnValue(dialogRef as any);
+
+      spyOn(usersService, 'addUser').and.returnValue(of({}));
+
+      component.addUser();
+
+      expect(getUsersSpy).toHaveBeenCalledTimes(2);
+    });
+  });
+
   describe('editUser', () => {
     it('should call getUser of UsersService', () => {
       const spy = spyOn(usersService, 'getUser').and.returnValue(of({ username: 'abc', userId: 'someID', groups: [] }));

@@ -19,6 +19,20 @@ export class UserManagementComponent implements OnInit {
     this.getData();
   }
 
+  addUser() {
+    const ref = this.dialog.open(UserDetailDialogComponent, {
+      data: { mode: 'add', user: { username: '', groups: [] } },
+      width: '30%',
+    });
+    ref.afterClosed().subscribe((user) => {
+      if (user) {
+        this.users.addUser(user.username, user.password, user.groups).subscribe(() => {
+          this.getData();
+        });
+      }
+    });
+  }
+
   editUser(id: string) {
     this.users.getUser(id).subscribe((user) => {
       const ref = this.dialog.open(UserDetailDialogComponent, { data: { mode: 'edit', user }, width: '30%' });

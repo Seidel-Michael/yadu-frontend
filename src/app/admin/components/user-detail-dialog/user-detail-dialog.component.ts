@@ -1,18 +1,10 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-  ValidationErrors,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/shared/models/user';
-import { MatChipInputEvent } from '@angular/material/chips';
 
 export interface UserDetailDialogData {
   mode: 'add' | 'edit';
@@ -46,7 +38,7 @@ export class UserDetailDialogComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group(
       {
-        username: [{ value: this.data.user.username, disabled: true }],
+        username: [{ value: this.data.user.username, disabled: this.data.mode === 'add' ? false : true }],
         password: [''],
         confirmPassword: [''],
       },

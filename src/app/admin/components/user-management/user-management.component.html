@@ -1,5 +1,10 @@
 <h2 translate="admin.userManagement"></h2>
 
+<button mat-raised-button color="primary" (click)="addUser()">
+  <mat-icon>add</mat-icon>
+  <span translate="admin.user.addUser"></span>
+</button>
+
 <mat-table *ngIf="dataSource" [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="username">
     <mat-header-cell *matHeaderCellDef translate="admin.user.username"></mat-header-cell>

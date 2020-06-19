@@ -4,6 +4,13 @@
   translate="admin.user.userDetailHeadingEdit"
   [translateParams]="{ user: data.user.username }"
 ></h1>
+<h1
+  *ngIf="data.mode === 'add'"
+  mat-dialog-title
+  translate="admin.user.addUser"
+  [translateParams]="{ user: data.user.username }"
+></h1>
+
 <div mat-dialog-content>
   <form [formGroup]="form">
     <mat-form-field>
@@ -47,7 +54,7 @@
         </mat-chip>
 
         <input
-          [placeholder]="'admin.groups' | translate"
+          [placeholder]="'admin.user.groups' | translate"
           [matChipInputFor]="groupsChipList"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           matChipInputAddOnBlur="true"
