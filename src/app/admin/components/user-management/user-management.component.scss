@@ -10,3 +10,11 @@ mat-row {
 mat-table {
   margin-top: 24px;
 }
+
+mat-cell {
+  &.mat-column-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

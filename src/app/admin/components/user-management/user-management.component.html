@@ -20,11 +20,24 @@
     </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <button mat-icon-button (click)="editUser(user.userId)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteUser(user.userId)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
   <mat-row
     *matRowDef="let row; columns: columnsToDisplay"
-    class="user-row"
-    (click)="editUser(row.userId)"
     [title]="'admin.user.userDetailHeadingEdit' | translate: { user: row.username }"
   ></mat-row>
 </mat-table>
+
+<!-- class="user-row"
+    (click)="editUser(row.userId)" -->

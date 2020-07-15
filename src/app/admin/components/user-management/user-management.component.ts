@@ -10,7 +10,7 @@ import { UserDetailDialogComponent } from '../user-detail-dialog/user-detail-dia
   styleUrls: ['./user-management.component.scss'],
 })
 export class UserManagementComponent implements OnInit {
-  columnsToDisplay = ['username', 'groups'];
+  columnsToDisplay = ['username', 'groups', 'actions'];
   dataSource: User[];
 
   constructor(private users: UsersService, private dialog: MatDialog) {}
@@ -43,6 +43,12 @@ export class UserManagementComponent implements OnInit {
           });
         }
       });
+    });
+  }
+
+  deleteUser(id: string) {
+    this.users.deleteUser(id).subscribe(() => {
+      this.getData();
     });
   }
 

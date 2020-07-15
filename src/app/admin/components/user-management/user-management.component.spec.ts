@@ -124,6 +124,24 @@ describe('UserManagementComponent', () => {
     });
   });
 
+  describe('deleteUser', () => {
+    it('should call deleteUser of UsersService', () => {
+      const spy = spyOn(usersService, 'deleteUser').and.returnValue(of({}));
+
+      component.deleteUser('someID');
+
+      expect(spy).toHaveBeenCalledWith('someID');
+    });
+
+    it('should call getUsers when deleteUser was successful', () => {
+      spyOn(usersService, 'deleteUser').and.returnValue(of({}));
+
+      component.deleteUser('someID');
+
+      expect(getUsersSpy).toHaveBeenCalled();
+    });
+  });
+
   describe('editUser', () => {
     it('should call getUser of UsersService', () => {
       const spy = spyOn(usersService, 'getUser').and.returnValue(of({ username: 'abc', userId: 'someID', groups: [] }));

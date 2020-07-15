@@ -9,6 +9,7 @@ export const adminTranslations: TranslationDefinition = {
       user: {
         username: 'Benutzername',
         groups: 'Gruppen',
+        actions: 'Aktionen',
         userDetailHeadingEdit: 'Benutzer "{{user}}" bearbeiten',
         addUser: 'Benutzer hinzufügen',
         password: 'Passwort',
@@ -27,6 +28,7 @@ export const adminTranslations: TranslationDefinition = {
       user: {
         username: 'Username',
         groups: 'Groups',
+        actions: 'Actions',
         userDetailHeadingEdit: 'Edit user "{{user}}"',
         addUser: 'Add user',
         password: 'Password',
